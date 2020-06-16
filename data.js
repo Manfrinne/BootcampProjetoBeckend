@@ -4,6 +4,7 @@ module.exports = [
         title: "LiveOverflow Channel Introduction and Backstory - bin 0x00",
         duration: "3:13 min",
         price: "Free",
+        featured: true,
     },
     {
         id: "navuBR4aJSs",
@@ -16,6 +17,7 @@ module.exports = [
         title: "Writing a simple Program in C - bin 0x02",
         duration: "12:26 min",
         price: "Free",
+        featured: true,
     },
     {
         id: "ajy1PHWYeyQ",
@@ -28,6 +30,7 @@ module.exports = [
         title: "How a CPU works and Introduction to Assembler - bin 0x04",
         duration: "11,51 min",
         price: "Free",
+        featured: true,
     },
     {
         id: "VroEiMOJPm8",
