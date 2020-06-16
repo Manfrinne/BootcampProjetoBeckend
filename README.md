@@ -2,7 +2,7 @@
 
 > Projeto Bootcamp - Iniciando no Backend
 
-Iniciar projeto Módulo 3 - Backend;
+### Iniciar projeto Módulo 3 - Backend
 
 - Criando o Servidor:
     - Iniciando a configuração do servidor:
@@ -29,7 +29,7 @@ Iniciar projeto Módulo 3 - Backend;
     });
     ```
 
-    - Reiniciando o Servidor automaticamente com Nodemon;
+    - [ ]  Reiniciando o Servidor automaticamente com Nodemon;
 
     ```bash
     npm install -D nodemon
@@ -61,7 +61,7 @@ Iniciar projeto Módulo 3 - Backend;
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/style.css">
-        {% block head %}{% endblock %} <!-- bloco que vou trazer de outra page -->
+        {% block head %}{% endblock %} <!-- bloco que vou trazer de outra página -->
 
     </head>
     <body>
@@ -79,9 +79,9 @@ Iniciar projeto Módulo 3 - Backend;
     ```
 
     ```html
-    {% extends "layout.njk" %} <!-- Com essa tag eu utilizo uma página como base -->
+    {% extends "layout.njk" %} <!-- Com essa tag acesso a página base -->
 
-    {% block head %} <!-- Determinar bloco para levar para base page -->
+    {% block head %} <!-- Determinar bloco para levar para página base -->
         <title>Portfolio - Frontend</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     		 rel="stylesheet">
@@ -107,7 +107,7 @@ Iniciar projeto Módulo 3 - Backend;
 
 - Passando dados do Back para o Frontend;
 
-    Por causa da Template Engine eu posso enviar dados do back para o front:
+    Por meio do Template Engine eu posso enviar dados do back para o frontend:
 
     ```jsx
     const videos = require("./data"); //variável no servidor
@@ -122,9 +122,9 @@ Iniciar projeto Módulo 3 - Backend;
 
     ```jsx
     //Utilizar apenas um card e fazer ele acessar os dados do 'data.js'
-    {% for item in itens %}  //loop com Nunjucks
+    {% for item in itens %}  //Estrutura de repetição com Nunjucks
     <div class="card" id="{{item.id}}"</div> //Substituir class pelos dados extraídos
-    {% endfor %} //Fechar bloco do loop
+    {% endfor %} //Fechar bloco de estrutura de repetição
     ```
 
 - Atualizando página Sobre;
@@ -142,7 +142,7 @@ Iniciar projeto Módulo 3 - Backend;
     });
 
     //Configurar autoescape como 'false' para os links não serem
-    //lidos como string.
+    //lidos como uma string.
     nunjucks.configure("views", {
         express: server,
         autoescape: false,
@@ -151,11 +151,11 @@ Iniciar projeto Módulo 3 - Backend;
 
 Todos os dados serão armazenados futuramente em um banco de dados, mas por enquanto o importante é entender que podemos separar backend e frontend.
 
-Configurar no servidor a opção 'autoescape: false'; isso para que os links colocados diretamente nas variáveis seja formatado pelo 'Nunjucks' não como uma simples 'string'.
+Configurar no servidor a opção 'autoescape: false'; isso para que os links colocados diretamente nas variáveis sejam formatados pelo 'Nunjucks' não como uma simples 'string'.
 
 ### Videos em Destaque
 
-Podemos utilizar 'if' com Nunjucks, dentro do loop ele adicionou:
+Podemos utilizar Condicional ( 'if' ) com Nunjucks dentro da estrutura de repetição:
 
 ```html
 {% if item.featured %}
@@ -199,7 +199,7 @@ Para que o Nunjucks consiga atualizar o servidor eu preciso esvaziar o Cache. ad
 nunjucks.configure("views", {
     express: server,
     autoescape: false,
-		noCache: true, //add line
+		noCache: true, //add statement
 });
 ```
 
@@ -237,14 +237,115 @@ nunjucks.configure("views", {
             return res.send("VIDEO NOT FOUND!")
         }
 
-        return res.render("video", {videos})
+        return res.render("video", {video})
     })
     ```
 
 - **[Estruturando a página de vídeo único](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/estruturando-a-pagina-de-video-unico)**
+
+    Vamos copiar o card da /portfolio.njk:
+
+    ```html
+    <!-- Nunjucks padrão -->
+
+    <section class="cards">
+                <div class="card" id="{{item.id}}">
+                    <div class="card__image-container {{ 'featured-wrapper' if item.featured }}">
+                        <img src="https://img.youtube.com/vi/{{item.id}}/maxresdefault.jpg" alt="{{itens.title}}">
+                        {% if item.featured %}
+                            <div class="featured">Featured</div>
+                        {% endif %}
+                    </div>
+                    <div class="card__content">
+                        <p>{{item.title}}</p>
+                    </div>
+                    <div class="card__info">
+                        <p>{{item.duration}}</p>
+                        <p class="card__price">{{item.price}}</p>
+                    </div>
+                </div>
+     </section>
+
+    <!-- Nunjucks padrão -->
+    ```
+
+    Também vamos modificar o nome da variável na roda do servidor para utilizarmos a mesma variável no arquivo video.njk:
+
+    ```jsx
+    return res.render("video", { item: video} )
+    //variável 'item' pra manter mesmo nome do arquivo 'njk'
+
+    ```
+
+    Vamos criar uma 'class' chamada "video" no arquivo video.njk:
+
+    ```html
+    <section class="video">
+    ```
+
+    Configurar a página video.njk no CSS:
+
+    ```css
+    .video {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    ```
+
 - **[Reconfigurando o iframe](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/reconfigurando-o-iframe)**
+
+Vamos copiar a tag iframe do arquivo portfolio.njk. Depois iremos colocar a tag iframe contida na tag de "class=card" no arquivo video.njk e criar a class="card__video-container":
+
+```html
+<div class="card" id="{{item.id}}">
+                <div class="card__video-container">
+                    <iframe src="https://www.youtube.com/embed/{{item.id}}" allowfullscreen></iframe>
+                    {% if item.featured %}
+                        <div class="featured">Featured</div>
+                    {% endif %}
+                </div>
+                <div class="card__content">
+                    <p>{{item.title}}</p>
+                </div>
+                <div class="card__info">
+                    <p>{{item.duration}}</p>
+                    <p class="card__price">{{item.price}}</p>
+                </div>
+            </div>
+```
+
+No CSS vamos configurar o iframe com o código:
+
+```css
+.card__video-container {
+    position: relative;
+    padding-top: 65%;
+}
+
+.card__video-container iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+}
+```
+
 - **[Redirecionando URL com JavaScript](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/redirecionando-url-com-java-script)**
-- **[Ajustes finais](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/ajustes-finais-1)**
+
+Para que a URL da página video.njk carregue pelo arquivo /public/script.js precisamos reformular o código para:
+
+```jsx
+const modalOverlay = document.querySelector('.modal-overlay');
+const cards = document.querySelectorAll('.card');
+
+for (let card of cards) {
+    card.addEventListener("click", function() {
+        modalOverlay.classList.add("active");
+        const videoId = card.getAttribute("id");
+        window.location.href = `/video?id=${videoId}`; //Carrega a página com o ID   
+    })
+};
+```
 
 ## Meta
 
