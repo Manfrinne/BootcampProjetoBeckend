@@ -2,7 +2,33 @@
 
 > Projeto Bootcamp - Iniciando no Backend
 
-### Iniciar projeto Módulo 3 - Backend
+O objetivo desse projeto é desenvolver o Backend de um Web site. Utilizamos o mesmo arquivo do nosso projeto de Frontend. Vamos criar um servidor com as rotas dos arquivos HTMLs, também vamos usar uma template engine para manipular os dados do frontend de forma dinâmica.
+
+![](public/showProject.gif)
+
+ ## Tecnologias e ferramentas:
+
+ <ul>
+  <li>Javascript</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>Node.js</li>
+  <li>Nodemon</li>
+  <li>Express</li>
+  <li>Nunjucks</li>
+ </ul>
+ 
+## Rodando o projeto:
+
+1 - Clone o projeto e o abra utilizando seu editor preferido.
+
+2 - Rode um `npm install` na pasta do projeto.
+
+3 - Rode um `npm start` para rodar o projeto.
+
+4 - Abra o projeto em `localhost:7777`
+
+## Iniciar projeto Módulo 3 - Backend
 
 - Criando o Servidor:
     - Iniciando a configuração do servidor:
@@ -91,7 +117,7 @@
 - Configurando arquivo .njk;
     - Instalar Plug 'Nunjucks Template';
 
-### Usando dados dinâmicos
+## Usando dados dinâmicos
 
 - Exportando e importando JavaScript;
 
@@ -153,7 +179,7 @@ Todos os dados serão armazenados futuramente em um banco de dados, mas por enqu
 
 Configurar no servidor a opção 'autoescape: false'; isso para que os links colocados diretamente nas variáveis sejam formatados pelo 'Nunjucks' não como uma simples 'string'.
 
-### Videos em Destaque
+## Videos em Destaque
 
 Podemos utilizar Condicional ( 'if' ) com Nunjucks dentro da estrutura de repetição:
 
@@ -205,7 +231,7 @@ nunjucks.configure("views", {
 
 ## Página de Vídeo Único
 
-- **[Passando dados do Front para o Back com Query Strings](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/passando-dados-do-front-para-o-back-com-query-strings)**
+- Passando dados do Front para o Back com Query Strings
 
     Não vamos mais abrir os vídeos pelo 'modal', vamos abrir direto de uma Web Page por meio do Query Strings. Para isso primeiro vamos criar uma nova rota:
 
@@ -221,7 +247,7 @@ nunjucks.configure("views", {
 
     [http://localhost:5000/video?id=](http://localhost:5000/video?id=algumacoisa)qualquercoisa
 
-- **[Filtrando elementos do array de vídeos](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/filtrando-elementos-do-array-de-videos)**
+- Filtrando elementos do array de vídeos
 
     ```jsx
     server.get("/video", function(req, res) {
@@ -241,7 +267,7 @@ nunjucks.configure("views", {
     })
     ```
 
-- **[Estruturando a página de vídeo único](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/estruturando-a-pagina-de-video-unico)**
+- Estruturando a página de vídeo único
 
     Vamos copiar o card da /portfolio.njk:
 
@@ -292,8 +318,7 @@ nunjucks.configure("views", {
     }
     ```
 
-- **[Reconfigurando o iframe](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/reconfigurando-o-iframe)**
-
+- Reconfigurando o iframe
 Vamos copiar a tag iframe do arquivo portfolio.njk. Depois iremos colocar a tag iframe contida na tag de "class=card" no arquivo video.njk e criar a class="card__video-container":
 
 ```html
@@ -330,7 +355,7 @@ No CSS vamos configurar o iframe com o código:
 }
 ```
 
-- **[Redirecionando URL com JavaScript](https://skylab.rocketseat.com.br/node/iniciando-no-back-end/group/pagina-de-video-unico/lesson/redirecionando-url-com-java-script)**
+- Redirecionando URL com JavaScript
 
 Para que a URL da página video.njk carregue pelo arquivo /public/script.js precisamos reformular o código para:
 
@@ -347,6 +372,12 @@ for (let card of cards) {
 };
 ```
 
-## Meta
+## Como contribuir:
 
-Manfrinne Ferreira – [@Manfrinne_R00t](https://twitter.com/Manfrinne_R00t) – m4nfrinne@gmail.com - [https://github.com/Manfrinne](https://github.com/Manfrinne)
+-  Faça um fork do projeto;
+-  Crie uma nova branch, exemplo: `git checkout -b my-feature`;
+-  Commit as modificações, exemplo: `git commit -m 'feat: My new feature'`;
+-  Faça um push para a sua branch: `git push origin my-feature`.
+
+Criado por Manfrinne Ferreira [Contato](https://www.linkedin.com/in/manfrinne-ferreira-6033121a7/)
+

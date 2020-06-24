@@ -52,6 +52,6 @@ server.get("/video", function(req, res) {
     return res.render("video", { item: video} ) //variável 'item' pra manter mesmo nome do arquivo 'njk'
 })
 
-server.listen(5000, function() {
+server.listen(7777, function() {
     console.log("I'm a Fullstack Developer!")
 })
